@@ -1,0 +1,75 @@
+<nav>
+  <div class="nav-content">
+    <div class="logo">
+      <a href="/" class="logo-icon">keys.</a>
+    </div>
+    <div class="nav-actions">
+      <a
+        href="https://github.com/adrian-perez-codes/superkey"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-btn">View Code</a
+      >
+    </div>
+  </div>
+</nav>
+
+<style>
+  .logo-icon {
+    color: var(--color-text);
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 1200px;
+    padding: 1.5rem 2rem;
+    margin: 0 auto;
+  }
+
+  .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.05em;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    color: var(--color-text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .nav-btn {
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .nav-btn:hover {
+    opacity: 0.9;
+  }
+</style>
