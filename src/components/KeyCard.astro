@@ -181,9 +181,6 @@ const { title, id, description } = Astro.props;
   // Spin Logic for Regenerate Button
   const initSpin = () => {
     document.querySelectorAll(".regenerate-btn").forEach((btn) => {
-      // Remove old listeners to be safe (optional if simply adding) or check custom prop
-      // For simplicity/safety with Astro's once-per-nav event, just add.
-      // Cleaning up isn't strictly necessary for click listeners on removed elements (swapped body)
       btn.addEventListener("click", function () {
         const icon = this.querySelector("svg");
         if (icon) {
