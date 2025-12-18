@@ -1,0 +1,202 @@
+---
+interface Props {
+  title: string;
+  id: string;
+  description?: string;
+}
+
+const { title, id, description } = Astro.props;
+---
+
+<div class="key-feature-card" data-key-card={id}>
+  <div class="card-header">
+    <h3 class="card-title">{title}</h3>
+  </div>
+
+  <p class="card-desc">{description}</p>
+
+  <div class="key-display-area">
+    <!-- Default state is masked -->
+    <code id={`key-${id}`} class="key-value" data-value=""
+      >••••••••••••••••••••••••</code
+    >
+    <div class="actions">
+      <!-- Regenerate -->
+      <button class="icon-btn regenerate-btn" aria-label="Regenerate">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+          ></path><path d="M3 3v5h5"></path><path
+            d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path
+            d="M21 21v-5h-5"></path></svg
+        >
+      </button>
+      <!-- Copy -->
+      <button class="icon-btn copy-btn" aria-label="Copy">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path
+            d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+          ></path></svg
+        >
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .key-feature-card {
+    padding: 1.25rem; /* Reduced padding */
+    background: #333333;
+    border: 1px solid var(--color-border);
+    border-radius: 12px; /* Slightly tighter radius */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    /* Compact width as requested */
+    width: 420px;
+    max-width: 100%;
+    margin: 0 auto;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+
+    background-image: radial-gradient(circle, #414141 1px, transparent 1px);
+    background-size: 24px 24px;
+    /* Ensure it pushes main down */
+    position: relative;
+  }
+
+  .key-feature-card:hover {
+    border-color: var(--color-text-dim);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem; /* Smaller title */
+    font-weight: 600;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .card-desc {
+    font-size: 0.85rem; /* Smaller description */
+    color: #d4d4d8;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+  }
+
+  .key-display-area {
+    margin-top: auto;
+    background: var(--color-surface-hover);
+    padding: 0.5rem 0.75rem; /* Compact padding */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border: 1px solid var(--color-border);
+    height: 40px; /* Fixed smaller height */
+  }
+
+  .key-value {
+    font-family: "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+    font-size: 0.85rem; /* Smaller font */
+    color: var(--color-primary);
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-dim);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .icon-btn:hover {
+    border-color: var(--color-text);
+    color: var(--color-text);
+  }
+
+  .copy-btn.copied {
+    background: #18181b;
+    border-color: #18181b;
+    color: white;
+  }
+
+  /* Spin Animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spin {
+    animation: spin 0.5s ease-in-out;
+  }
+</style>
+
+<script>
+  // Spin Logic for Regenerate Button
+  const initSpin = () => {
+    document.querySelectorAll(".regenerate-btn").forEach((btn) => {
+      // Remove old listeners to be safe (optional if simply adding) or check custom prop
+      // For simplicity/safety with Astro's once-per-nav event, just add.
+      // Cleaning up isn't strictly necessary for click listeners on removed elements (swapped body)
+      btn.addEventListener("click", function () {
+        const icon = this.querySelector("svg");
+        if (icon) {
+          icon.classList.add("spin");
+          // Remove class after animation to allow re-triggering
+          setTimeout(() => {
+            icon.classList.remove("spin");
+          }, 500);
+        }
+      });
+    });
+  };
+
+  // Attach on initial load and after every swap
+  document.addEventListener("astro:page-load", initSpin);
+</script>
