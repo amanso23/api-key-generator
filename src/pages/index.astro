@@ -1,11 +1,561 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import KeyCard from "@/components/KeyCard.astro";
+import Toast from "@/components/Toast.astro";
+import Footer from "@/components/Footer.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <div class="hero-wrapper">
+    <Navbar />
+
+    <Toast />
+
+    <!-- Hero Section -->
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge">Open Source & secure</div>
+      <h1>The place for secure keys &<br />tokens to find each other</h1>
+      <p class="subtitle">
+        Generate cryptographically secure API keys, UUIDs, and tokens instantly
+        in your browser. No backend. No tracking. 100% Client-side.
+      </p>
+
+      <div class="cta-group">
+        <button class="btn btn-primary" id="scroll-to-generators"
+          >Generate Now</button
+        >
+        <a href="/docs" class="btn btn-secondary">Read Documentation</a>
+      </div>
+
+      <div class="hero-image-placeholder">
+        <div class="fake-ui-window">
+          <div class="fake-ui-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span
+              class="dot green"></span>
+          </div>
+          <div class="fake-ui-content">
+            <div class="code-line">crypto.getRandomValues(array);</div>
+            <div class="code-line">>> "sk_live_51M..."</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main>
+    <!-- Social Proof -->
+    <section class="social-proof">
+      <p>21,000+ Verified Keys Generated Locally</p>
+      <div class="stats-grid">
+        <div class="stat">
+          <h3>20K+</h3>
+          <p>UUIDs Generated</p>
+        </div>
+        <div class="stat">
+          <h3>100%</h3>
+          <p>Cryptographically Secure</p>
+        </div>
+        <div class="stat">
+          <h3>#1</h3>
+          <p>Privacy Focused</p>
+        </div>
+        <div class="stat">
+          <h3>0ms</h3>
+          <p>Latency</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Generator Grid -->
+    <section class="generators" id="generators">
+      <h2>Keys for every stage and sector</h2>
+      <p class="section-desc">
+        Choose the right format for your database, API, or authentication
+        system.
+      </p>
+
+      <div class="feature-grid">
+        <KeyCard
+          title="Standard API Key"
+          id="sk"
+          description="Prefix-based key (sk_...) ideal for API authentication layers."
+        />
+
+        <KeyCard
+          title="UUID v4"
+          id="uuid"
+          description="Standard 128-bit label for database primary keys."
+        />
+
+        <KeyCard
+          title="Hex Token (32B)"
+          id="hex"
+          description="256-bit random high-entropy hex string for sessions."
+        />
+
+        <KeyCard
+          title="Base64 Token"
+          id="base64"
+          description="Compact URL-safe string for query parameters."
+        />
+
+        <KeyCard
+          title="Strong Secret"
+          id="strong"
+          description="Complex password with symbols for admin access."
+        />
+
+        <KeyCard
+          title="Nano ID"
+          id="nano"
+          description="Tiny, secure, URL-friendly unique string ID."
+        />
+      </div>
+    </section>
+
+    <!-- CTA / Footer -->
+    <section class="bottom-cta">
+      <h2>Simple, transparent logic</h2>
+      <div class="pricing-card">
+        <p class="price-title">Lifetime Access</p>
+        <div class="price">Free</div>
+        <ul class="features-list">
+          <li>✓ Unlimited Generations</li>
+          <li>✓ 100% Client-side Privacy</li>
+          <li>✓ Open Source Code</li>
+        </ul>
+        <button class="btn btn-primary full-width">View Source Code</button>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+
+  <style>
+    .hero-wrapper {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: radial-gradient(circle, #e5e5e5 1px, transparent 1px);
+      background-size: 24px 24px;
+      /* Ensure it pushes main down */
+      position: relative;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 1.5rem 4rem; /* Added horizontal padding */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .badge {
+      background: #f4f4f5;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: var(--color-text-dim);
+      box-shadow: inset 1px 1px 4px 0 rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--color-border);
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--color-text);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--color-text-dim);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      line-height: 1.5;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block; /* Ensure it respects padding */
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--color-border);
+      /* Always black text on white button, regardless of theme */
+      color: #18181b;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+    }
+
+    /* Fake UI */
+    .hero-image-placeholder {
+      width: 100%;
+      max-width: 900px;
+      background: #f4f4f5;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--color-border);
+    }
+
+    .fake-ui-window {
+      background: white;
+      /* Always black text on white window */
+      color: #18181b;
+      border-radius: 8px;
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .fake-ui-header {
+      background: #f9fafb;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .red {
+      background: #fee2e2;
+    }
+    .yellow {
+      background: #fef3c7;
+    }
+    .green {
+      background: #d1fae5;
+    }
+
+    .fake-ui-content {
+      padding: 1.5rem;
+      font-family: monospace;
+      /* Explicit dark gray for code, not inheriting white */
+      color: #71717a;
+    }
+
+    /* Social Proof */
+    .social-proof {
+      text-align: center;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .social-proof > p {
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat h3 {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat p {
+      color: var(--color-text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Generators */
+    .generators {
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    .generators h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--color-text-dim);
+      margin-bottom: 4rem;
+    }
+
+    .feature-grid {
+      display: flex; /* Changed from Grid to Flex Column */
+      flex-direction: column;
+      gap: 1.5rem; /* Reduced gap slightly for stack */
+      align-items: center; /* Center the fixed width cards */
+      text-align: left;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Bottom Pricing */
+    .bottom-cta {
+      padding: 4rem 0 6rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-cta h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: left;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      /* Always black text on white card */
+      color: #18181b;
+    }
+
+    .price {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 1rem 0;
+      letter-spacing: -0.05em;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+
+    .features-list li {
+      margin-bottom: 0.75rem;
+      color: var(--color-text-dim);
+      font-size: 0.95rem;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+        padding: 0 1rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      /* Ensure placeholder is visible and scaled */
+      .hero-image-placeholder {
+        display: block;
+        padding: 1rem; /* Reduce padding on mobile */
+      }
+      .fake-ui-window {
+        display: block; /* Ensure visible */
+      }
+      .fake-ui-content {
+        padding: 1rem;
+        font-size: 0.8rem; /* Smaller code font */
+        overflow-x: auto; /* Allow scrolling if really tight */
+      }
+      /* Stack buttons on mobile */
+      .cta-group {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 2rem;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+        display: block; /* Ensure anchor acts like block */
+        box-sizing: border-box; /* padding included in width */
+      }
+      /* Adjust footer spacing */
+      .bottom-cta {
+        padding: 3rem 1rem 4rem;
+      }
+      .pricing-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Define types if necessary or infer
+    const generators = {
+      sk: () => {
+        const array = new Uint8Array(24);
+        crypto.getRandomValues(array);
+        return (
+          "sk_live_" +
+          Array.from(array, (dec) => dec.toString(16).padStart(2, "0")).join("")
+        );
+      },
+      uuid: () => {
+        return crypto.randomUUID();
+      },
+      hex: () => {
+        const array = new Uint8Array(32);
+        crypto.getRandomValues(array);
+        return Array.from(array, (dec) =>
+          dec.toString(16).padStart(2, "0")
+        ).join("");
+      },
+      base64: () => {
+        const array = new Uint8Array(32);
+        crypto.getRandomValues(array);
+        return btoa(String.fromCharCode.apply(null, Array.from(array)))
+          .replace(/\+/g, "-")
+          .replace(/\//g, "_")
+          .replace(/=+$/, "");
+      },
+      strong: () => {
+        const chars =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+        const array = new Uint32Array(32);
+        crypto.getRandomValues(array);
+        return Array.from(array)
+          .map((x) => chars[x % chars.length])
+          .join("");
+      },
+      nano: () => {
+        const alphabet =
+          "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzict";
+        let size = 21;
+        let id = "";
+        const bytes = crypto.getRandomValues(new Uint8Array(size));
+        while (size--) {
+          id +=
+            alphabet[bytes[size] & 63] ||
+            alphabet[Math.floor(Math.random() * 64)];
+        }
+        return id;
+      },
+    };
+
+    function updateKey(id: string) {
+      // @ts-ignore
+      const generator = generators[id];
+      if (!generator) return;
+
+      const el = document.getElementById(`key-${id}`);
+      if (el) {
+        el.style.opacity = "0.5";
+        const newKey = generator();
+        setTimeout(() => {
+          el.setAttribute("data-value", newKey);
+          el.innerText = "••••••••••••••••••••••••";
+          el.style.opacity = "1";
+        }, 100);
+      }
+    }
+
+    function copyToClipboard(btnElement: HTMLElement, keyId: string) {
+      const keyEl = document.getElementById(`key-${keyId}`);
+      if (!keyEl) return;
+      const realValue = keyEl.getAttribute("data-value");
+      if (!realValue) return;
+
+      navigator.clipboard.writeText(realValue).then(() => {
+        // @ts-ignore
+        if (window.showToast) window.showToast("Copied key to clipboard");
+        btnElement.classList.add("copied");
+        setTimeout(() => {
+          btnElement.classList.remove("copied");
+        }, 2000);
+      });
+    }
+
+    function init() {
+      // Initialize keys
+      Object.keys(generators).forEach((id) => updateKey(id));
+
+      // Attach Event Listeners
+      document.querySelectorAll(".key-feature-card").forEach((card) => {
+        const id = card.getAttribute("data-key-card");
+        if (!id) return;
+
+        const regenBtn = card.querySelector(".regenerate-btn");
+        // Clone to remove existing listeners if this runs multiple times on same element (safeguard)
+        // or just add listener. Since we use `astro:page-load` on module script, it runs once per nav.
+        // Elements are new if body swapped.
+        regenBtn?.addEventListener("click", () => updateKey(id));
+
+        const copyBtn = card.querySelector(".copy-btn");
+        copyBtn?.addEventListener("click", function () {
+          // @ts-ignore
+          copyToClipboard(this, id);
+        });
+      });
+
+      // Hero CTA scroll
+      const scrollBtn = document.getElementById("scroll-to-generators");
+      if (scrollBtn) {
+        scrollBtn.addEventListener("click", () => {
+          document
+            .getElementById("generators")
+            ?.scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    }
+
+    // Run on every page load (initial + navigation)
+    document.addEventListener("astro:page-load", init);
+  </script>
 </Layout>
