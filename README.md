@@ -29,7 +29,7 @@
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/api-key-generator.git
+    git clone https://github.com/amanso23/api-key-generator
     cd api-key-generator
     ```
 
