@@ -495,7 +495,6 @@ import Footer from "@/components/Footer.astro";
     };
 
     function updateKey(id: string) {
-      // @ts-ignore
       const generator = generators[id];
       if (!generator) return;
 
@@ -518,7 +517,6 @@ import Footer from "@/components/Footer.astro";
       if (!realValue) return;
 
       navigator.clipboard.writeText(realValue).then(() => {
-        // @ts-ignore
         if (window.showToast) window.showToast("Copied key to clipboard");
         btnElement.classList.add("copied");
         setTimeout(() => {
@@ -544,7 +542,6 @@ import Footer from "@/components/Footer.astro";
 
         const copyBtn = card.querySelector(".copy-btn");
         copyBtn?.addEventListener("click", function () {
-          // @ts-ignore
           copyToClipboard(this, id);
         });
       });
