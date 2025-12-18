@@ -1,0 +1,139 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import Footer from "@/components/Footer.astro";
+import BackToGenerator from "@/components/BackToGenerator.astro";
+---
+
+<Layout title="Documentation | keys.">
+  <Navbar />
+  <main>
+    <div class="docs-container">
+      <BackToGenerator />
+      <h1>Documentation</h1>
+
+      <section class="doc-section">
+        <h2>Introduction</h2>
+        <p>
+          <strong><b>keys.</b></strong> is a privacy-focused, client-side API key
+          generator built with Astro. It generates cryptographically secure keys (UUIDs,
+          Hex tokens, Base64 strings) directly in your browser using the Web Crypto
+          API.
+        </p>
+      </section>
+
+      <section class="doc-section">
+        <h2>Key Features</h2>
+        <ul>
+          <li>
+            <strong>100% Client-Side</strong>: No backend, no analytical
+            tracking, and no data transmission. Keys are generated locally.
+          </li>
+          <li>
+            <strong>Cryptographically Secure</strong>: Uses <code
+              >window.crypto.getRandomValues</code
+            > for high-entropy generation.
+          </li>
+          <li>
+            <strong>Zero Latency</strong>: Instant generation with no network
+            requests.
+          </li>
+          <li>
+            <strong>Visual Privacy</strong>: Keys are masked on-screen to
+            prevent shoulder surfing.
+          </li>
+        </ul>
+      </section>
+
+      <section class="doc-section">
+        <h2>Usage</h2>
+        <p>
+          Simply click the "Regenerate" button on any card to create a new key.
+          Click "Copy" to copy the value to your clipboard. The real value is
+          never shown in plain text on the screen for security.
+        </p>
+      </section>
+
+      <section class="doc-section">
+        <h2>Security Note</h2>
+        <div class="note">
+          This application relies on the browser's <code>crypto</code> API. While
+          suitable for generating API keys, session tokens, and IDs, please ensure
+          your local machine is secure. Since no data leaves your browser, the security
+          of the generated keys depends entirely on your local environment.
+        </div>
+      </section>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .docs-container {
+    padding: 2rem 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  p,
+  li {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  code {
+    background: #f4f4f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--color-primary);
+  }
+
+  .note {
+    background: #fff beb;
+    border-left: 4px solid var(--color-primary);
+    padding: 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left-width: 4px; /* Override border */
+    border-left-color: var(--color-primary);
+    border-radius: 4px;
+  }
+</style>

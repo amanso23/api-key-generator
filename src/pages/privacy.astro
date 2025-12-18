@@ -1,0 +1,88 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import BackToGenerator from "@/components/BackToGenerator.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout title="Privacy Policy | keys.">
+  <Navbar />
+
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last Updated: {currentYear}</p>
+
+    <section>
+      <h2>1. Data Collection</h2>
+      <p>
+        <b>keys.</b> is a client-side application. <strong
+          >We do not collect, store, or transmit any data you generate.</strong
+        > All API keys, tokens, and secrets are generated locally within your browser
+        using the standard Web Crypto API.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Cookies & Tracking</h2>
+      <p>We do not use tracking cookies or third-party analytics services.</p>
+    </section>
+
+    <section>
+      <h2>3. Source Code</h2>
+      <p>
+        Our code is open source. You can audit the generation logic on our
+        GitHub repository to verify that no data leaves your device.
+      </p>
+    </section>
+
+    <BackToGenerator />
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .last-updated {
+    color: var(--color-text-dim);
+    margin-bottom: 3rem;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  p {
+    line-height: 1.6;
+    color: var(--color-text-dim);
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>

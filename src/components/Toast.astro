@@ -1,0 +1,52 @@
+<div id="toast" class="toast hidden">
+  <span id="toast-message">Notification</span>
+</div>
+
+<style>
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    opacity: 0;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .toast.hidden {
+    transform: translateX(-50%) translateY(1rem);
+    opacity: 0;
+  }
+</style>
+
+<script is:inline>
+  window.showToast = (message) => {
+    const toast = document.getElementById("toast");
+    const msg = document.getElementById("toast-message");
+    if (!toast || !msg) return;
+
+    msg.innerText = message;
+    toast.classList.remove("hidden");
+    toast.classList.add("visible");
+
+    setTimeout(() => {
+      toast.classList.remove("visible");
+      toast.classList.add("hidden");
+    }, 2500);
+  };
+</script>

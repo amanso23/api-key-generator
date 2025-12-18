@@ -1,0 +1,92 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+import BackToGenerator from "@/components/BackToGenerator.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout title="Terms of Service | keys.">
+  <Navbar />
+
+  <main>
+    <h1>Terms of Service</h1>
+    <p class="last-updated">Last Updated: {currentYear}</p>
+
+    <section>
+      <h2>1. Usage</h2>
+      <p>
+        <b>keys.</b> is a free tool provided "as is". You may use the generated keys
+        for any personal or commercial purpose.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. No Warranty</h2>
+      <p>
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+        OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Liability</h2>
+      <p>
+        In no event shall the authors or copyright holders be liable for any
+        claim, damages or other liability, whether in an action of contract,
+        tort or otherwise, arising from, out of or in connection with the
+        software or the use or other dealings in the software.
+      </p>
+    </section>
+
+    <BackToGenerator />
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .last-updated {
+    color: var(--color-text-dim);
+    margin-bottom: 3rem;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  p {
+    line-height: 1.6;
+    color: var(--color-text-dim);
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>
