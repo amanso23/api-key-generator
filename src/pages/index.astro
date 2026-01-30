@@ -440,8 +440,14 @@ import Footer from "@/components/Footer.astro";
   </style>
 
   <script>
+    declare global {
+      interface Window {
+        showToast?: (message: string) => void;
+      }
+    }
+
     // Define types if necessary or infer
-    const generators = {
+    const generators: Record<string, () => string> = {
       sk: () => {
         const array = new Uint8Array(24);
         crypto.getRandomValues(array);
@@ -539,8 +545,8 @@ import Footer from "@/components/Footer.astro";
         regenBtn?.addEventListener("click", () => updateKey(id));
 
         const copyBtn = card.querySelector(".copy-btn");
-        copyBtn?.addEventListener("click", function () {
-          copyToClipboard(this, id);
+        copyBtn?.addEventListener("click", (event) => {
+          copyToClipboard(event.currentTarget as HTMLElement, id);
         });
       });
 
