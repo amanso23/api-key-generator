@@ -181,8 +181,8 @@ const { title, id, description } = Astro.props;
   // Spin Logic for Regenerate Button
   const initSpin = () => {
     document.querySelectorAll(".regenerate-btn").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const icon = this.querySelector("svg");
+      btn.addEventListener("click", (event) => {
+        const icon = (event.currentTarget as HTMLElement).querySelector("svg");
         if (icon) {
           icon.classList.add("spin");
           // Remove class after animation to allow re-triggering
